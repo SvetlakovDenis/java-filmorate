@@ -13,6 +13,7 @@ import java.time.LocalDate;
 public class FilmController extends Controller<Film> {
     private final static LocalDate START_OF_FILMS_HISTORY = LocalDate.of(1895, 12, 28);
 
+    //Проверяется соответствие даты выхода фильма на то, что она не раньше начала истории фильмографии
     @Override
     public boolean doValidate(Film film) {
         return !film.getReleaseDate().isBefore(START_OF_FILMS_HISTORY);

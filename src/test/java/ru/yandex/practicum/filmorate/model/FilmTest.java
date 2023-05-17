@@ -16,6 +16,7 @@ public class FilmTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    //Тесты на выпадение исключения при различных ошибках валидации
     @Test
     void shouldCreateFilmWithCorrectFields() {
         Film film = new Film(1, "Волк с Уолл-Стрит", "Режисер: Мартин Скорцезе", LocalDate.of(2013, 12, 25),

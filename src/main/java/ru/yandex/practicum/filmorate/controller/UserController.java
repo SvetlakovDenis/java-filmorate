@@ -18,11 +18,12 @@ public class UserController extends Controller<User> {
         }
     }
 
+    //Проверяет наличие пробелов в логине пользователя
     @Override
     public boolean doValidate(User user) {
         String login = user.getLogin();
         if (login != null) {
-            return !login.matches(" ");
+            return !login.contains(" ");
         }
         return true;
     }

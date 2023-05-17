@@ -17,6 +17,7 @@ public class FilmControllerTest {
         filmController = new FilmController();
     }
 
+    //Проверяет, что при отсутствии имени выпадает исключение
     @Test
     void shouldReturnExceptionMessageWhenFieldsOfCreatingFilmAreNotCorrect() {
         Film film = new Film(1, null, "Режисер: Мартин Скорцезе", LocalDate.of(2013, 12, 25), Duration.ofHours(3));
@@ -24,6 +25,7 @@ public class FilmControllerTest {
         Assertions.assertEquals("Поля заполнены некорректно!" ,e.getMessage());
     }
 
+    //Проверяет, что при неверном переназначении полей выпадает исключение
     @Test
     void shouldReturnExceptionMessageWhenFieldsOfResettingFilmAreNotCorrect() {
         Film film = new Film(1, "Волк с Уолл-Стрит", "Режисер: Мартин Скорцезе", LocalDate.of(2013, 12, 25),
@@ -36,6 +38,7 @@ public class FilmControllerTest {
         Assertions.assertEquals("Поля для обновления заполнены некорректно!", e.getMessage());
     }
 
+    //Проверяет, что несуществующий фильм нельзя переназначить
     @Test
     void shouldNotResetNotExistedFilm() {
         Film film = new Film(1, "Волк с Уолл-Стрит", "Режисер: Мартин Скорцезе", LocalDate.of(2013, 12, 25),

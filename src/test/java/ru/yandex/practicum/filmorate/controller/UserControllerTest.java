@@ -15,6 +15,7 @@ public class UserControllerTest {
         userController = new UserController();
     }
 
+    //Проверяет, что с пустым полем имени, оно назначится как логин
     @Test
     void shouldSetUserNameIfItIsEmpty() {
         User user = new User(1, "denisSvetlakov@yandex.ru", "Denis", null, LocalDate.of(1997, 9, 5));

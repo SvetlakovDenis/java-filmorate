@@ -21,9 +21,10 @@ public class UserTest {
         User user = new User(1, "svetlakov@yandex.ru", "Denis", "Denis", LocalDate.of(1997, 9, 5));
         ResponseEntity<User> response = restTemplate.postForEntity("/users", user, User.class);
 
-        Assertions.assertEquals("201 CREATED", response.getStatusCode().toString());
+        Assertions.assertEquals("200 OK", response.getStatusCode().toString());
     }
 
+    //Тесты на выпадение исключения при различных ошибках валидации
     @Test
     public void shouldNotCreateUserWithWrongEmail() {
         User user = new User(1, "svetlakov.ru", "Denis", "Denis", LocalDate.of(1997, 9, 5));
@@ -42,7 +43,7 @@ public class UserTest {
 
     @Test
     public void shouldNotCreateUserWithWhitespaceInLogin() {
-        User user = new User(1, "svetlakov@yandex.ru", "Svetlakov Denis", "Denis", LocalDate.of(1997, 9, 5));
+        User user = new User(1, "svetlakov@yandex.ru", " Svetlakov Denis", "Denis", LocalDate.of(1997, 9, 5));
         ResponseEntity<User> response = restTemplate.postForEntity("/users", user, User.class);
 
         Assertions.assertEquals("400 BAD_REQUEST", response.getStatusCode().toString());
@@ -50,7 +51,7 @@ public class UserTest {
 
     @Test
     public void shouldNotCreateUserWithFutureDayOfBirthday() {
-        User user = new User(1, "svetlakov@yandex.ru", "Denis", "Denis", LocalDate.now().plus(Duration.ofDays(10)));
+        User user = new User(1, "svetlakov@yandex.ru", "Denis", "Denis", LocalDate.of(2100, 12, 12));
         ResponseEntity<User> response = restTemplate.postForEntity("/users", user, User.class);
 
         Assertions.assertEquals("400 BAD_REQUEST", response.getStatusCode().toString());

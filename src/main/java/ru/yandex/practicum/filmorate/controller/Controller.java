@@ -49,12 +49,14 @@ public abstract class Controller<T extends Model> {
         return ++id;
     }
 
+    //В случае, когда валидация не совершается, выбрасывается исключение
     private void validate(T object, String message) throws ValidationException {
         if (!doValidate(object)) {
             throw new ValidationException(message);
         }
     }
 
+    //Метод переопределяется для филмов и пользователей
     protected boolean doValidate(T object) {
         return true;
     }
